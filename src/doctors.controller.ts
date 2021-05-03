@@ -1,11 +1,13 @@
+import { DoctorsService } from './doctors.service';
 import { Controller, Get, Req } from '@nestjs/common'
 import {Request} from 'express'
+import Doctor from './doctor.interface'
 
 @Controller('/doctors')
 export default class DoctorsController{
     listOfDoctors : object[]
 
-    constructor(){
+    constructor(private doctorService: DoctorsService){
         this.listOfDoctors =[
             {
                 name: "ntwari egide",
@@ -21,10 +23,8 @@ export default class DoctorsController{
     }
 
     @Get()
-    findAll(@Req() receivedRequest : Request){
-        console.log("This is my content: ",receivedRequest);
-        
-        return this.listOfDoctors
+    async findAll(): Promise<Doctor[]>{        
+        return this.doctorService.getAllDoctors()
         // return "This is my content "+receivedRequest
     }
 
