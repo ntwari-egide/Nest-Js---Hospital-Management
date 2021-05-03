@@ -1,6 +1,5 @@
 import { DoctorsService } from './doctors.service';
-import { Controller, Get, Req } from '@nestjs/common'
-import {Request} from 'express'
+import { Body, Controller, Get, Post } from '@nestjs/common'
 import Doctor from './doctor.interface'
 
 @Controller('/doctors')
@@ -8,18 +7,6 @@ export default class DoctorsController{
     listOfDoctors : object[]
 
     constructor(private doctorService: DoctorsService){
-        this.listOfDoctors =[
-            {
-                name: "ntwari egide",
-                role: "doctor",
-                clinic: "gahunga santre de cante"
-            },
-            {
-                name: "mugisha jules",
-                role: "phd-doctor",
-                clinic: "gahunga santre de cante"
-            }
-        ]
     }
 
     @Get()
@@ -28,4 +15,8 @@ export default class DoctorsController{
         // return "This is my content "+receivedRequest
     }
 
+    @Post()
+    async addDoctor(@Body() doctor: Doctor){
+        this.doctorService.createDoctor(doctor)
+    }
 }
