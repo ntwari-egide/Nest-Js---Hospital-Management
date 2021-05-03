@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
 // services manage data retrieval and storage logics
-@Injectable
+@Injectable()
 export class DoctorsService{
     listOfDoctors : [
         {
