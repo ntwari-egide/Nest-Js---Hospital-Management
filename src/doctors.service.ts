@@ -10,7 +10,7 @@ export class DoctorsService{
         return this.listOfDoctors
     }
 
-    createDoctor(){
+    createDoctor(doctor : Doctor){
         return this.listOfDoctors.push()
     }
 
