@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, Req } from '@nestjs/common'
+import {Request} from 'express'
 
 @Controller('/doctors')
 export default class DoctorsController{
@@ -20,7 +21,11 @@ export default class DoctorsController{
     }
 
     @Get()
-    findAll(){
+    findAll(@Req() receivedRequest : Request){
+        console.log("This is my content: ",receivedRequest);
+        
         return this.listOfDoctors
+        // return "This is my content "+receivedRequest
     }
+
 }
