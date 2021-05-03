@@ -6,8 +6,12 @@ import Doctor from "./doctor.interface";
 export class DoctorsService{
     private listOfDoctors : Doctor[]
 
-    getAllDoctors() {
+    getAllDoctors(): Doctor[] {
+        return this.listOfDoctors
+    }
 
+    createDoctor(){
+        return this.listOfDoctors.push()
     }
 
 }
