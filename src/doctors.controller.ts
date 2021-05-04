@@ -1,6 +1,7 @@
+import { HttpExceptionFilter } from './http-request.filter';
 import { DoctorNotFoundException } from './doctors.exception';
 import { DoctorsService } from './doctors.service';
-import { Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common'
+import { Body, Controller, Get, HttpException, HttpStatus, Post, UseFilters } from '@nestjs/common'
 import Doctor from './doctor.interface'
 
 @Controller('/doctors')
@@ -17,13 +18,14 @@ export default class DoctorsController{
     }
 
     @Get('/protected')
+    @UseFilters(new HttpExceptionFilter())
     async findProtected(){
         // throw new HttpException('Unauthorized access',HttpStatus.FORBIDDEN)
         throw new HttpException({
             status: HttpStatus.FORBIDDEN,
             error: 'This is protected, Login first'
         },HttpStatus.FORBIDDEN)
-        
+
     }
 
     @Get("/customized")
