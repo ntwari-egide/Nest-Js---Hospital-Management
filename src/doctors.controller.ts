@@ -20,7 +20,6 @@ export default class DoctorsController{
         throw new HttpException('Unauthorized access',HttpStatus.FORBIDDEN)
     }
 
-    
     @Post()
     async addDoctor(@Body() doctor: Doctor){
         this.doctorService.createDoctor({name: 'new doctor',role: 'doctor',clinic: 'any clinic'})
