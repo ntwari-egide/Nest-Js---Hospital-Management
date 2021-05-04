@@ -1,5 +1,6 @@
+import { LoggerDoctorMiddleware } from './doctors.middleware';
 import { DoctorsService } from './doctors.service';
-import { Global, Module } from '@nestjs/common';
+import { Global, Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import DoctorsController from './doctors.controller';
 
 @Global()
@@ -9,6 +10,11 @@ import DoctorsController from './doctors.controller';
     exports: [DoctorsService]
 })
 
-export class DoctorsModule{
+export class DoctorsModule implements NestModule{
+    configure(consumer: MiddlewareConsumer){
+        consumer
+        .apply(LoggerDoctorMiddleware)
+        .forRoutes('doctors')
+    }
     constructor(private doctorService:DoctorsService){}
 }
