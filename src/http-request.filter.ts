@@ -1,6 +1,4 @@
-import { Catch, HttpException, HttpStatus } from '@nestjs/common';
-import { ExceptionFilter } from '@nestjs/common';
-import { ExceptionFilter, Catch, ArgumentsHost, HttpException } from '@nestjs/common';
+import { ExceptionFilter, Catch, ArgumentsHost, HttpException,HttpStatus } from '@nestjs/common';
 import { Request, Response, response } from 'express';
 
 @Catch(HttpException)
@@ -23,8 +21,8 @@ export class HttpExceptionFilter  implements ExceptionFilter{
 
 /* caching all unhandled exceptions */
 @Catch()
-export class allExceptionsFilter extends ExceptionFilter{
-    Catch(exception: unknown,host : ArgumentsHost){
+export class AllExceptionsFilter implements ExceptionFilter{
+    catch(exception: any, host: ArgumentsHost) {
         const ctx = host.switchToHttp()
         const request = ctx.getRequest<Request>()
         const response = ctx.getResponse<Response>()
