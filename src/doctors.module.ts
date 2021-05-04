@@ -16,5 +16,6 @@ export class DoctorsModule implements NestModule{
         .apply(LoggerDoctorMiddleware)
         .forRoutes('doctors')
     }
+    
     constructor(private doctorService:DoctorsService){}
 }
