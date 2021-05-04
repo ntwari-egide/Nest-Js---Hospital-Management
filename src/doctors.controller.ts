@@ -23,6 +23,7 @@ export default class DoctorsController{
             status: HttpStatus.FORBIDDEN,
             error: 'This is protected, Login first'
         },HttpStatus.FORBIDDEN)
+        
     }
 
     @Get("/customized")
