@@ -8,3 +8,9 @@ export class LoggerDoctorMiddleware implements NestMiddleware{
         next()        
     }
 }
+/* FUNCTIONAL MIDDLEWARE */
+
+export function logger(req: Request,res: Response,next: NextFunction){
+    console.log("Accessing any router .....");
+    
+}
