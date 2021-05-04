@@ -1,3 +1,4 @@
+import { DoctorNotFoundException } from './doctors.exception';
 import { DoctorsService } from './doctors.service';
 import { Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common'
 import Doctor from './doctor.interface'
@@ -22,6 +23,11 @@ export default class DoctorsController{
             status: HttpStatus.FORBIDDEN,
             error: 'This is protected, Login first'
         },HttpStatus.FORBIDDEN)
+    }
+
+    @Get("/customized")
+    async findCustomized(){
+        throw new DoctorNotFoundException('Doctor with id: 1 is not found')
     }
 
     @Post()
