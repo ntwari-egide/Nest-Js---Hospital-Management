@@ -6,6 +6,10 @@ import Doctor from "./doctor.interface";
 export class DoctorsService{
     private listOfDoctors : Doctor[]
 
+    constructor(){
+        this.listOfDoctors = [{name: 'ntwari',role: 'doctor',clinic: 'benz clinic'}]
+    }
+
     getAllDoctors(): Doctor[] {
         return this.listOfDoctors
     }
