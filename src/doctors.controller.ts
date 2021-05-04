@@ -17,7 +17,11 @@ export default class DoctorsController{
 
     @Get('/protected')
     async findProtected(){
-        throw new HttpException('Unauthorized access',HttpStatus.FORBIDDEN)
+        // throw new HttpException('Unauthorized access',HttpStatus.FORBIDDEN)
+        throw new HttpException({
+            status: HttpStatus.FORBIDDEN,
+            error: 'This is protected, Login first'
+        },HttpStatus.FORBIDDEN)
     }
 
     @Post()
