@@ -15,3 +15,9 @@ export function logger(req: Request,res: Response,next: NextFunction){
     console.log("Accessing any router .....");
     next()
 }
+
+/* GLOBAL MIDDLEWARE */
+export function globalLogger(req: Request,res: Response,next: NextFunction){
+    console.log("Global middleware .........");
+    next()    
+}
