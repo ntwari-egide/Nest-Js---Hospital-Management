@@ -16,7 +16,14 @@ export class DoctorsModule implements NestModule{
         .apply(LoggerDoctorMiddleware)
         // .forRoutes('doctors')
         /* restricting the middleware to some routes */
-        .forRoutes({path: 'doctors',method: RequestMethod.GET})
+        // .forRoutes({path: 'doctors',method: RequestMethod.GET})
+        // .forRoutes({path: 'do*tors',method: RequestMethod.ALL})
+        /* Excluding some routes */
+        .exclude(
+            {path: 'doctors',method: RequestMethod.POST},
+            {path: 'doctors',method: RequestMethod.DELETE}
+        )
+        .forRoutes(DoctorsController)
     }
 
     constructor(private doctorService:DoctorsService){}
