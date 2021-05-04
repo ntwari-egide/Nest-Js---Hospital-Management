@@ -1,6 +1,7 @@
 import { Injectable, NestMiddleware } from "@nestjs/common";
 import { NextFunction } from "express";
 
+/* CLASS MIDDLEWARE */
 @Injectable()
 export class LoggerDoctorMiddleware implements NestMiddleware{
     use(req: Request,res: Response,next: NextFunction){
@@ -12,5 +13,5 @@ export class LoggerDoctorMiddleware implements NestMiddleware{
 
 export function logger(req: Request,res: Response,next: NextFunction){
     console.log("Accessing any router .....");
-    
+    next()
 }
