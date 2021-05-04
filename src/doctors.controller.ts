@@ -1,5 +1,5 @@
 import { DoctorsService } from './doctors.service';
-import { Body, Controller, Get, Post } from '@nestjs/common'
+import { Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common'
 import Doctor from './doctor.interface'
 
 @Controller('/doctors')
@@ -13,6 +13,11 @@ export default class DoctorsController{
     async findAll(): Promise<Doctor[]>{        
         return this.doctorService.getAllDoctors()
         // return "This is my content "+receivedRequest
+    }
+
+    @Get('/protected')
+    async findProtected(){
+        throw new HttpException('Unauthorized access',HttpStatus.FORBIDDEN)
     }
 
     @Post()
