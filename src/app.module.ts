@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 import DoctorsController from './doctors.controller';
 
 @Module({
-  imports: [DoctorsModule],
+  imports: [],
   controllers: [AppController],
   providers: [AppService],
 })

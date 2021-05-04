@@ -17,6 +17,6 @@ export default class DoctorsController{
 
     @Post()
     async addDoctor(@Body() doctor: Doctor){
-        this.doctorService.createDoctor(doctor)
+        this.doctorService.createDoctor({name: 'new doctor',role: 'doctor',clinic: 'any clinic'})
     }
 }
