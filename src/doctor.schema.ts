@@ -1,21 +1,29 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+// import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+// import { Document } from "mongoose";
 
-export type DoctorDocument = Doctor & Document
+// export type DoctorDocument = Doctor & Document
 
-@Schema()
-export class Doctor{
-    @Prop({required: true})
+// @Schema()
+// export class Doctor{
+//     @Prop({required: true})
 
-    name: string
+//     name: string
 
-    @Prop()
+//     @Prop()
 
-    role: string
+//     role: string
 
-    @Prop()
+//     @Prop()
 
-    clinic: string
-}
+//     clinic: string
+// }
 
-export const DoctorSchema = SchemaFactory.createForClass(Doctor)
+// export const DoctorSchema = SchemaFactory.createForClass(Doctor)
+
+import * as mongoose from 'mongoose';
+
+export const DoctorSchema = new mongoose.Schema({
+  name: String,
+  role: String,
+  clinic: String,
+});

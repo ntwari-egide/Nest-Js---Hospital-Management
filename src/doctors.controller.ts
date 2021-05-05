@@ -1,8 +1,8 @@
 import { HttpExceptionFilter } from './http-request.filter';
 import { DoctorNotFoundException } from './doctors.exception';
 import { DoctorsService } from './doctors.service';
+import DoctorInput from './doctor.interface'
 import { Body, Controller, Get, HttpException, HttpStatus, Post, UseFilters } from '@nestjs/common'
-import { Doctor } from './doctor.schema';
 
 
 @Controller('/doctors')
@@ -13,7 +13,7 @@ export default class DoctorsController{
     }
 
     @Get()
-    async findAll(): Promise<Doctor[]>{        
+    async findAll(): Promise<DoctorInput[]>{        
         return this.doctorService.getAllDoctors()
         // return "This is my content "+receivedRequest
     }
@@ -35,7 +35,7 @@ export default class DoctorsController{
     }
 
     @Post()
-    async addDoctor(@Body() doctor: Doctor){
+    async addDoctor(@Body() doctor: DoctorInput){
         this.doctorService.createDoctor(doctor)
     }
 }

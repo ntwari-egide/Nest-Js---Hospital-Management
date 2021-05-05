@@ -2,14 +2,14 @@ import { LoggerDoctorMiddleware } from './doctors.middleware';
 import { DoctorsService } from './doctors.service';
 import { Global, Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import DoctorsController from './doctors.controller';
-import { MongooseModule } from '@nestjs/mongoose';
-import { Doctor, DoctorSchema } from './doctor.schema';
+import { DatabaseModule } from './database.module';
+import { doctorsProvider } from './doctors.providers';
 
 @Global()
 @Module({
-    imports: [MongooseModule.forFeature([{name: Doctor.name,schema: DoctorSchema}],'doctors')],
+    imports: [DatabaseModule],
     controllers: [DoctorsController],
-    providers: [DoctorsService],
+    providers: [DoctorsService,...doctorsProvider],
     exports: [DoctorsService]
 })
 
