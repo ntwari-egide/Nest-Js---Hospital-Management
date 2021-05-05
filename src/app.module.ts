@@ -4,9 +4,10 @@ import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/c
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { logger } from './doctors.middleware';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [DoctorsModule],
+  imports: [DoctorsModule,MongooseModule.forRoot('mongodb+srv://root:edaedaeda@cluster0.ulkpq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')],
   controllers: [AppController],
   providers: [AppService],
 })
