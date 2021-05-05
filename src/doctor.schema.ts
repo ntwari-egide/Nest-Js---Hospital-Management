@@ -5,7 +5,7 @@ export type DoctorDocument = Doctor & Document
 
 @Schema()
 export class Doctor{
-    @Prop()
+    @Prop({required: true})
 
     name: string
 
