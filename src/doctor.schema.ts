@@ -1,4 +1,4 @@
-import { Prop, Schema } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 
 export type DoctorDocument = Doctor & Document
@@ -14,6 +14,8 @@ export class Doctor{
     role: string
 
     @Prop()
-    
+
     clinic: string
 }
+
+export const DoctorSchema = SchemaFactory.createForClass(Doctor)
