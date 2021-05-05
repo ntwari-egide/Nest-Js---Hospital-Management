@@ -1,4 +1,4 @@
-export default interface Doctor{
+export default interface DoctorInput{
     name: string,
     role: string,
     clinic: string
