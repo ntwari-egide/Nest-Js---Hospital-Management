@@ -7,7 +7,7 @@ import { Doctor, DoctorSchema } from './doctor.schema';
 
 @Global()
 @Module({
-    imports: [MongooseModule.forFeature([{name: Doctor.name,schema: DoctorSchema}])],
+    imports: [MongooseModule.forFeature([{name: Doctor.name,schema: DoctorSchema}],'doctors')],
     controllers: [DoctorsController],
     providers: [DoctorsService],
     exports: [DoctorsService]

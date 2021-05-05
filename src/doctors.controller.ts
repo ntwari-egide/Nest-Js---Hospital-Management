@@ -2,7 +2,8 @@ import { HttpExceptionFilter } from './http-request.filter';
 import { DoctorNotFoundException } from './doctors.exception';
 import { DoctorsService } from './doctors.service';
 import { Body, Controller, Get, HttpException, HttpStatus, Post, UseFilters } from '@nestjs/common'
-import Doctor from './doctor.interface'
+import { Doctor } from './doctor.schema';
+
 
 @Controller('/doctors')
 export default class DoctorsController{
@@ -35,6 +36,6 @@ export default class DoctorsController{
 
     @Post()
     async addDoctor(@Body() doctor: Doctor){
-        this.doctorService.createDoctor({name: 'new doctor',role: 'doctor',clinic: 'any clinic'})
+        this.doctorService.createDoctor(doctor)
     }
 }
