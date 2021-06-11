@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import DoctorInput from './doctor.interface'
+import { CreateDoctorDto } from './dto/createdoctor.dto';
 
 // services manage data retrieval and storage logics
 @Injectable()
@@ -18,7 +19,7 @@ export class DoctorsService{
         return this.doctorModel.find().exec();
     }
 
-    async createDoctor(doctor : DoctorInput): Promise<DoctorInput>{
+    async createDoctor(doctor : CreateDoctorDto): Promise<DoctorInput>{
         // return this.listOfDoctors.push()
         const createdDoctor =  new this.doctorModel(doctor);
         return createdDoctor.save()
