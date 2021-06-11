@@ -4,6 +4,8 @@ import { DoctorsService } from './doctors.service';
 import DoctorInput from './doctor.interface'
 import { Body, Controller, Get, HttpException, HttpStatus, ParseIntPipe, Post, UseFilters } from '@nestjs/common'
 import { Param } from '@nestjs/common';
+import { UsePipes } from '@nestjs/common';
+import { JoiValidationPipe } from './validation.pipe';
 
 
 @Controller('/doctors')
@@ -47,6 +49,7 @@ export default class DoctorsController{
     }
 
     @Post()
+    @UsePipes(new JoiValidationPipe(Doctor))
     async addDoctor(@Body() doctor: DoctorInput){
         this.doctorService.createDoctor(doctor)
     }
