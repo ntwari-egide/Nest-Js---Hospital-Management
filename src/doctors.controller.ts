@@ -2,7 +2,8 @@ import { HttpExceptionFilter } from './http-request.filter';
 import { DoctorNotFoundException } from './doctors.exception';
 import { DoctorsService } from './doctors.service';
 import DoctorInput from './doctor.interface'
-import { Body, Controller, Get, HttpException, HttpStatus, Post, UseFilters } from '@nestjs/common'
+import { Body, Controller, Get, HttpException, HttpStatus, ParseIntPipe, Post, UseFilters } from '@nestjs/common'
+import { Param } from '@nestjs/common';
 
 
 @Controller('/doctors')
@@ -32,6 +33,11 @@ export default class DoctorsController{
     @Get("/customized")
     async findCustomized(){
         throw new DoctorNotFoundException('Doctor with id: 1 is not found')
+    }
+
+    @Get("/:id")
+    async getDoctorById(@Param("id", ParseIntPipe) id:Number){
+        this.doctorService.
     }
 
     @Post()
