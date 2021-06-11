@@ -25,7 +25,7 @@ export class DoctorsService{
     }
 
     async getDoctorById(id:Number): Promise<DoctorInput>{
-        return  this.doctorModel.findById(id).exec()
+        return  this.doctorModel.findOne(id).exec()
     }
 
 }

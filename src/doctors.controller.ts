@@ -35,9 +35,15 @@ export default class DoctorsController{
         throw new DoctorNotFoundException('Doctor with id: 1 is not found')
     }
 
+    /**
+     * Nest js pipes : parseIntPipe
+     * @param id 
+     * @returns 
+     */
+
     @Get("/:id")
-    async getDoctorById(@Param("id", ParseIntPipe) id:Number){
-        this.doctorService.
+    async getDoctorById(@Param("id", new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id:Number){
+        return   this.doctorService.getDoctorById(id);
     }
 
     @Post()
