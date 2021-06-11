@@ -5,11 +5,19 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { logger } from './doctors.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './guards/role.guard';
 
 @Module({
   imports: [DoctorsModule,MongooseModule.forRoot('mongodb+srv://root:edaedaeda@cluster0.ulkpq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard
+    }
+  ],
 })
 export class AppModule implements NestModule{
   configure(consumer: MiddlewareConsumer){
