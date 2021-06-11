@@ -2,15 +2,17 @@ import { HttpExceptionFilter } from './http-request.filter';
 import { DoctorNotFoundException } from './doctors.exception';
 import { DoctorsService } from './doctors.service';
 import DoctorInput from './doctor.interface'
-import { Body, Controller, Get, HttpException, HttpStatus, ParseIntPipe, Post, UseFilters } from '@nestjs/common'
+import { Body, Controller, Get, HttpException, HttpStatus, ParseIntPipe, Post, UseFilters, UseGuards } from '@nestjs/common'
 import { Param } from '@nestjs/common';
 import { UsePipes } from '@nestjs/common';
 import { JoiValidationPipe } from './validation.pipe';
 import { ValidationPipe } from '@nestjs/common';
 import { CreateDoctorDto } from './dto/createdoctor.dto';
+import { RolesGuard } from './guards/role.guard';
 
 
 @Controller('/doctors')
+@UseGuards(new RolesGuard())
 export default class DoctorsController{
     listOfDoctors : object[]
 
