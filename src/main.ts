@@ -5,6 +5,7 @@ import { globalLogger } from './doctors.middleware';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { CacheInterceptor } from './interceptors/cache.interceptor';
+import { TimeoutInterceptor } from './interceptors/timeout.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,6 +19,8 @@ async function bootstrap() {
   app.useGlobalInterceptors(new LoggingInterceptor())
 
   app.useGlobalInterceptors(new CacheInterceptor())
+
+  app.useGlobalInterceptors(new TimeoutInterceptor())
 
   await app.listen(3000);
 }

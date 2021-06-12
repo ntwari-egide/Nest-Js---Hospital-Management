@@ -11,6 +11,7 @@ import { CreateDoctorDto } from './dto/createdoctor.dto';
 import { RolesGuard } from './guards/role.guard';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { UseInterceptors } from '@nestjs/common';
+import { Doctor } from './decorators/doctor.decorator';
 
 
 @Controller('/doctors')
@@ -54,6 +55,15 @@ export default class DoctorsController{
     async getDoctorById(@Param("id", new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id:Number){
         return   this.doctorService.getDoctorById(id);
     }
+
+    /**
+     * Usage of custom decorators
+     */
+    @Get()
+    async findOne(@Doctor() doctor: CreateDoctorDto){
+        console.log("Custom decorators returning : ",doctor);
+    }
+
 
     @Post()
     // @UsePipes(new JoiValidationPipe(Doctor))
