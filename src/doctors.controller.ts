@@ -64,6 +64,15 @@ export default class DoctorsController{
         console.log("Custom decorators returning : ",doctor);
     }
 
+    /**
+     * Accesing particular element in the decorator
+     */
+
+    @Get()
+    async findOneInDecorator(@Doctor('name') fullName: string) {
+        console.log(`Hello ${fullName} from custom decorator`);
+    }
+
 
     @Post()
     // @UsePipes(new JoiValidationPipe(Doctor))

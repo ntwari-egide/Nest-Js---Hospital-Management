@@ -1,8 +1,10 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 
 export const Doctor = createParamDecorator(
-  (data: unknown, ctx: ExecutionContext) => {
+  (data: string, ctx: ExecutionContext) => {
     const request = ctx.switchToHttp().getRequest();
-    return request.doctor;
+    const doctor = request.doctor
+
+    return data? doctor?.[data] : doctor
   },
 )
