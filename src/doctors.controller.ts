@@ -9,10 +9,13 @@ import { JoiValidationPipe } from './validation.pipe';
 import { ValidationPipe } from '@nestjs/common';
 import { CreateDoctorDto } from './dto/createdoctor.dto';
 import { RolesGuard } from './guards/role.guard';
+import { LoggingInterceptor } from './interceptors/logging.interceptor';
+import { UseInterceptors } from '@nestjs/common';
 
 
 @Controller('/doctors')
 @UseGuards(new RolesGuard())
+@UseInterceptors(new LoggingInterceptor())
 export default class DoctorsController{
     listOfDoctors : object[]
 

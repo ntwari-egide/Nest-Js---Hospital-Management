@@ -5,8 +5,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { logger } from './doctors.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { RolesGuard } from './guards/role.guard';
+import { LoggingInterceptor } from './interceptors/logging.interceptor';
 
 @Module({
   imports: [DoctorsModule,MongooseModule.forRoot('mongodb+srv://root:edaedaeda@cluster0.ulkpq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')],
@@ -16,6 +17,10 @@ import { RolesGuard } from './guards/role.guard';
     {
       provide: APP_GUARD,
       useClass: RolesGuard
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor
     }
   ],
 })
